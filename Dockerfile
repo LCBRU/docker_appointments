@@ -4,8 +4,7 @@
 ############################################################
 
 # Set the base image to Ubuntu
-FROM ubuntu:latest
-
+FROM ubuntu:14.04
 #    Potential Tags : See https://github.com/docker-library/docs/blob/master/ubuntu/tag-details.md
 #    ubuntu:12.04.5
 #    ubuntu:12.04
@@ -32,11 +31,18 @@ MAINTAINER Saj Issa <saj.issa@gmail.com>
 ################## BEGIN INSTALLATION ######################
 
 
+#RUN apt-get update && \
+#    apt-get -y upgrade && \
+#    DEBIAN_FRONTEND=noninteractive apt-get -y install apache2 php7.0  php7.0-mysql  php7.0-curl  php7.0-mcrypt  php7.0-json php7.0-ldap libapache2-mod-php7.0  php5-zip php7.0-gd php-pear php-auth php-iconv curl phpmyadmin libpcre3-dev wget git vim unzip ntp cron supervisor ssmtp&& \
+#    apt-get clean && \
+#    update-rc.d apache2 defaults 
+
 RUN apt-get update && \
     apt-get -y upgrade && \
-    DEBIAN_FRONTEND=noninteractive apt-get -y install apache2 php7.0  php7.0-mysql  php7.0-curl  php7.0-mcrypt  php7.0-json libapache2-mod-php7.0  php7.0-zip php7.0-gd php-pear php-auth curl phpmyadmin libpcre3-dev wget git vim unzip ntp cron ssmtp&& \
+    DEBIAN_FRONTEND=noninteractive apt-get -y install apache2 php5 php5-mysql php5-curl php5-mcrypt php5-json php5-ldap libapache2-mod-php5 php-pear php-auth curl phpmyadmin wget git vim unzip mysql-server ntp cron supervisor && \
     apt-get clean && \
-    update-rc.d apache2 defaults 
+    update-rc.d apache2 defaults && \
+php5enmod mcrypt
 
 RUN pear install DB    
 
@@ -53,6 +59,9 @@ ENV APACHE_LOG_DIR /var/log/apache2
 ENV APACHE_LOCK_DIR /var/lock/apache2
 ENV APACHE_PID_FILE /var/run/apache2.pid
 
+RUN locale-gen en_GB.UTF-8
+ENV LANG='en_GB.UTF-8' LANGUAGE='en_GB:en' LC_ALL='en_GB.UTF-8'
+
 # Expose apache.
 EXPOSE 80
 
@@ -62,16 +71,25 @@ RUN mkdir -p /var/www/site
 # Copy this repo into place.
 ADD info.php /var/www/site
 
+# supervisord config file
+COPY ./supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
 # Appointments zip file
 ADD appointments.zip /home
 RUN unzip /home/appointments.zip -d /var/www/site
 
+# config
+RUN sed -i.bak 's/$db_login = "brumrbs";/$db_login = "briccsext02_user";/g' /var/www/site/appointments/config.inc.php
+RUN sed -i.bak 's/$db_password = "bru4mrbs8";/$db_password = "18trb64mft";/g' /var/www/site/appointments/config.inc.php
+RUN sed -i.bak 's/$url_base = "http:\/\/10.156.254.207\/appointments";/$url_base = "http:\/\/10.28.88.37:81\/appointments";/g' /var/www/site/appointments/config.inc.php
+
 # php changes
-RUN sed -i.bak 's/upload_max_filesize = 2M/upload_max_filesize = 32M/g' /etc/php/7.0/apache2/php.ini
-RUN sed -i.bak 's/post_max_size = 8M/post_max_size = 32M/g' /etc/php/7.0/apache2/php.ini
-RUN sed -i.bak 's/; max_input_vars = 1000/max_input_vars = 10000/g' /etc/php/7.0/apache2/php.ini
+#RUN sed -i.bak 's/upload_max_filesize = 2M/upload_max_filesize = 32M/g' /etc/php/7.0/apache2/php.ini
+#RUN sed -i.bak 's/post_max_size = 8M/post_max_size = 32M/g' /etc/php/7.0/apache2/php.ini
+#RUN sed -i.bak 's/; max_input_vars = 1000/max_input_vars = 10000/g' /etc/php/7.0/apache2/php.ini
 
 # Update the default apache site with the config we created.
 ADD apache-config.conf /etc/apache2/sites-enabled/000-default.conf
 
+# Setup supervisord
+CMD /usr/bin/supervisord -c /etc/supervisor/conf.d/supervisord.conf
