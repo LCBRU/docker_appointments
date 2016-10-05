@@ -78,16 +78,6 @@ COPY ./supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 ADD appointments.zip /home
 RUN unzip /home/appointments.zip -d /var/www/site
 
-# config
-RUN sed -i.bak 's/$db_login = "brumrbs";/$db_login = "briccsext02_user";/g' /var/www/site/appointments/config.inc.php
-RUN sed -i.bak 's/$db_password = "bru4mrbs8";/$db_password = "18trb64mft";/g' /var/www/site/appointments/config.inc.php
-RUN sed -i.bak 's/$url_base = "http:\/\/10.156.254.207\/appointments";/$url_base = "http:\/\/10.28.88.37:81\/appointments";/g' /var/www/site/appointments/config.inc.php
-
-# php changes
-#RUN sed -i.bak 's/upload_max_filesize = 2M/upload_max_filesize = 32M/g' /etc/php/7.0/apache2/php.ini
-#RUN sed -i.bak 's/post_max_size = 8M/post_max_size = 32M/g' /etc/php/7.0/apache2/php.ini
-#RUN sed -i.bak 's/; max_input_vars = 1000/max_input_vars = 10000/g' /etc/php/7.0/apache2/php.ini
-
 # Update the default apache site with the config we created.
 ADD apache-config.conf /etc/apache2/sites-enabled/000-default.conf
 
