@@ -4,11 +4,11 @@ This installs Appointments web app
 
 To **build** the image :
 
-  * sudo docker build -t lcbruit/appointments_install:v1.1 .
+  * sudo docker build -t lcbruit/appointments_install:v1.2 .
   
 To **run** the docker container :
  
-  * sudo docker run -v /share:/share -itd -p 81:80 lcbruit/appointments_install:v1.1
+  * sudo docker run -v /share:/share -itd -p 81:80 lcbruit/appointments_install:v1.2
   
 To **connect** to container :
 
