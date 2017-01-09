@@ -75,8 +75,7 @@ ADD info.php /var/www/site
 COPY ./supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
 # Appointments zip file
-ADD appointments.zip /home
-RUN unzip /home/appointments.zip -d /var/www/site
+ADD ./appointments /var/www/site/appointments
 
 # Update the default apache site with the config we created.
 ADD apache-config.conf /etc/apache2/sites-enabled/000-default.conf
