@@ -44,7 +44,13 @@ $display_timezone = TRUE;
 $dbsys = "mysqli";
 // Hostname of database server. For pgsql, can use "" instead of localhost
 // to use Unix Domain Sockets instead of TCP/IP.
-$db_host = "10.156.254.206";
+
+// briccsdb
+//$db_host = "10.156.254.206"; 
+
+// briccsdb02
+$db_host = "10.156.254.205";
+
 // Database name:
 $db_database = "mrbs";
 // Database login user name:
@@ -63,7 +69,7 @@ $db_tbl_prefix = "mrbs_";
    or areadefaults.inc.php.  */
 
 $mrbs_admin = "Your Administrator";
-$mrbs_admin_email = "nrh11@le.ac.uk";  // NOTE:  there are more email addresses in $mail_settings below
+$mrbs_admin_email = "rab63@leicester.ac.uk";  // NOTE:  there are more email addresses in $mail_settings below
 
 // The company name is mandatory.   It is used in the header and also for email notifications.
 // The company logo, additional information and URL are all optional.
