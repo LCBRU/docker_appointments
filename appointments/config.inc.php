@@ -168,6 +168,7 @@ $auth["admin"][] = "mamta.srikandhan"; // A user name from the user list.
 $auth["admin"][] = "kelley.green"; // A user name from the user list.
 $auth["admin"][] = "anna-marie.marsh"; // A user name from the user list.
 $auth["admin"][] = "dianne.dennis"; // A user name from the user list.
+$auth["admin"][] = "jenny.middleton"; // A user name from the user list.
 
 // 'auth_ldap' configuration settings
 // Where is the LDAP server
@@ -405,6 +406,14 @@ $select_options['entry.study_name'] = array(
 '0130 - Iddea-HF',
 '0131 - Victoria',
 '0132 - Paradise MI',
+'0133 – MICRA',
+'0134 – UNCOVER AF',
+'0135 – HES',
+'0136 – INDAPAMIDE',
+'0137 – CMR GUIDE',
+'0138 – FOAMI',
+'0139 – EMPEROR HFpEF',
+'0140 – EMPEROR HFrEF',
 'OTHER'
 );
 
