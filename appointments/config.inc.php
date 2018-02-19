@@ -170,6 +170,7 @@ $auth["admin"][] = "anna-marie.marsh"; // A user name from the user list.
 $auth["admin"][] = "dianne.dennis"; // A user name from the user list.
 $auth["admin"][] = "jenny.middleton"; // A user name from the user list.
 $auth["admin"][] = "dhruvesh.ranpura";
+$auth["admin"][] = "daniel.brewer";
 
 // 'auth_ldap' configuration settings
 // Where is the LDAP server
