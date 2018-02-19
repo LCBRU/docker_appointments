@@ -416,6 +416,21 @@ $select_options['entry.study_name'] = array(
 '0138 – FOAMI',
 '0139 – EMPEROR HFpEF',
 '0140 – EMPEROR HFrEF',
+'0141 – SPIRIT',
+'0142 – FARADAY',
+'0143 – EMBER',
+'0144 – SENSCIS',
+'0145 – BASIL 2',
+'0146 – BASIL 3',
+'0147 – NOAH-AFNET 6',
+'0148 – ENABLE MRI',
+'0149 – CardioMEMs',
+'0150 – PREDICT',
+'0151 – CardioMET',
+'0152 – HOPE HF',
+'0153 – ENVISAGE',
+'0154 – SAFE HEART',
+'0155 – EVOLVED AS',
 'OTHER'
 );
 
@@ -427,14 +442,14 @@ $select_options['entry.study_pi'] = array(
 'Professor Kamlesh Khunti',
 'Professor Alison Goodall',
 'Dr W Toff',
-'Dr G A Ng',
+'Professor G A Ng',
 'Professor Leong Ng',
 'Dr Nick Brindle',
-'Dr Matt Bown',
+'Professor Matt Bown',
 'Dr Derek Chin',
 'Dr Joan Davies',
-'Dr Gerry McCann',
-'Prof D H Evans',
+'Professor Gerry McCann',
+'Professor D H Evans',
 'Dr Sadat Edroos',
 'Mr Vimal J Gokani',
 'Professor T J Spyt',
@@ -448,8 +463,8 @@ $select_options['entry.study_pi'] = array(
 'Dr Amit Mistry',
 'Dr Ian Hudson',
 'Dr Edward Choke',
-'Dr Jan Kovac',
-'Dr Dave Adlam'
+'Professor Jan Kovac',
+'Dr Dave Adlam',
 );
 
 

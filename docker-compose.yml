@@ -1,0 +1,8 @@
+version: '2'
+
+services:
+  mrbs:
+    restart: always
+    build: ./mrbs
+    ports:
+      - "80:80"
